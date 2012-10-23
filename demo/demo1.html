@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ScrollTween Demo</title>
+        <style>
+            #container {
+                width: 400px;
+                height: 400px;
+                background-color: pink;
+                padding: 0;
+                margin: 0;
+            }
+            #container * {
+                padding: 0;
+                margin: 0;
+            }
+            #head1 {
+                width: 200px;
+                height: 80px;
+                background-color: green;
+            }
+            #head2 {
+                width: 180px;
+                height: 60px;
+                background-color: blue;
+            }
+        </style>
+        <script src="jquery-1.8.1.min.js"></script>
+        <script src="jquery.mousewheel.js"></script>
+        <script src="ScrollTween.js"></script>
+        <script>
+            $(function() {
+                'use strict';
+                var containerDiv = $('#container');
+                var container = ScrollTween.container(containerDiv);
+                container.add("#head1", function(tween) {
+                    tween
+                        .to(0, tween.styles().topOut().center())
+                        .range(100, 200, tween.styles().middle())
+                        .to(400, tween.styles().rightOut());
+    
+                });
+                container.add("#head2", function(tween) {
+                    tween
+                        .to(200, tween.styles().bottomOut().center())
+                        .range(300, 400, tween.styles().middle())
+                        .to(500, tween.styles().leftOut());
+                });
+                container.play();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <h1 id="head1">
+                Heading1
+            </h1>
+            <h2 id="head2">
+                Heading2
+            </h2>
+        </div>
+    </body>
+</html>
